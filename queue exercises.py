@@ -1,4 +1,5 @@
 from queue import Queue
+from typing import Union
 
 
 # Ex 1
@@ -13,11 +14,11 @@ def print_queue(q: Queue) -> None:
 
 
 # Ex 2
-def max_in_queue(q: Queue) -> int:
+def max_in_queue(q: Queue[Union[int, float]]) -> int:
     """
     Finds max value in an ints queue
     :param q: The queue to search
-    :type q: Queue
+    :type q: Queue[Union[int, float]]
     :return: The max value in the queue
     :rtype: int
     """
@@ -25,15 +26,15 @@ def max_in_queue(q: Queue) -> int:
 
 
 # Ex 3
-def average_of_queue(q: Queue) -> float:
+def average_of_queue(q: Queue[Union[int, float]]) -> float:
     """
     Calculates the average of the queue elements
     :param q: The queue to find its average
-    :type q: Queue
+    :type q: Queue[Union[int, float]]
     :return: The average of all the elements
     :rtype: float
     """
-    length = q.qsize()
+    length = len(q.queue)  # More efficient than q.qsize()
     if length == 0:
         return 0
     return float(sum(q.queue) / length)
@@ -42,16 +43,15 @@ def average_of_queue(q: Queue) -> float:
 # Ex 4
 def print_elements(q: Queue, x: int) -> None:
     """
-    Prints each element in queue x times
+    Prints each element in queue x times in different lines
     :param q: Its elements need to be printed
     :type q: Queue
     :param x: The times to print each element
     :type x: int
     :return: None
     """
-    elements = list(q.queue)
-    for element in elements:
-        for i in range(x):
+    for element in q.queue:
+        for _ in range(x):
             print(element)
 
 
@@ -70,13 +70,13 @@ def is_in_queue(q: Queue, x: int) -> bool:
 
 
 # Ex 8
-def only_positives(q: Queue) -> Queue:
+def only_positives(q: Queue[Union[int, float]]) -> Queue[Union[int, float]]:
     """
-    Removes non-positive elements from a queue
+    Creates a new queue containing only positive elements from the original queue.
     :param q: The original queue
-    :type q: Queue
-    :return: A queue with only positive numbers
-    :rtype: Queue
+    :type q: Queue[Union[int, float]]
+    :return: A queue containing only positive ints
+    :rtype: Queue[Union[int, float]]
     """
     new_queue = Queue()
 
@@ -87,20 +87,21 @@ def only_positives(q: Queue) -> Queue:
 
 
 # Ex 10
-def build_double_queue(n: int, m: int) -> Queue:
+def build_double_queue(n: int, m: int) -> Queue[int]:
     """
-    Creates a queue containing even ints between n and m
-    :param n: Min of elements
+    Creates a queue containing even ints between n and m (excluded)
+    :param n: Min value
     :type n: int
-    :param m: Max of elements
+    :param m: Max value
     :type m: int
-    :return: The queue with even ints
-    :rtype: Queue
+    :return: A queue with even ints
+    :rtype: Queue[int]
     """
+    queue_result = Queue()
+
     if n % 2 != 0:
         n += 1  # Make it even
 
-    queue_result = Queue()
     for i in range(n, m, 2):
         queue_result.put(i)
     return queue_result

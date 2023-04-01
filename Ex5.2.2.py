@@ -1,4 +1,4 @@
-numbers = iter(list(range(1, 101)))
+numbers = iter(range(1, 101))
 
 # Print every 3rd number in iterable without using "if"
 while True:

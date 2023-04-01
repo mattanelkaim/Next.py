@@ -6,8 +6,8 @@ def is_funny(string: str) -> bool:
     :return: Whether contains only 'a' and 'h' or not
     :rtype: bool
     """
-    # Builds a list of all elements that are not 'a' or 'h', then it's funny if empty!
-    return len([x for x in string if x != 'a' and x != 'h']) == 0
+    # Use not any to stop as soon as meeting a true expression
+    return not any(x for x in string if x not in {'a', 'h'})  # Could have used a list comprehension inefficiently
 
 
 def main():

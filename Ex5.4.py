@@ -1,3 +1,4 @@
+from typing import Generator
 MAX_ID = 999_999_999
 
 
@@ -18,7 +19,7 @@ def check_id_valid(id_number: int) -> bool:
 class IDIterator:
     """
     An iterator to go through possible valid ID numbers.
-    :param start_id: The ID number to start counting from. Default is 100000000.
+    :param start_id: The ID number to start counting from. Default is 100_000_000.
     :type start_id: int
     :ivar _id = The current ID number of the iterator
     """
@@ -45,13 +46,13 @@ class IDIterator:
         return self._id
 
 
-def id_generator(current_id: int = 123_456_780):
+def id_generator(current_id: int = 123_456_780) -> Generator[int, int, None]:
     """
     Generator function that calculates next valid ID number
     :param current_id: The ID number to start calculating from. Default is 123456780.
     :type current_id: int
     :return: The next valid ID number, -1 if crossed max
-    :rtype: Generator[int]
+    :rtype: Generator[int, int, None]
     """
     while True:
         if current_id <= MAX_ID:

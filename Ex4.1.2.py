@@ -7,8 +7,8 @@ def translate(sentence: str) -> str:
     :rtype: str
     """
     words = {'esta': 'is', 'la': 'the', 'en': 'in', 'gato': 'cat', 'casa': 'house', 'el': 'the'}
-    new_sentence = (words[word] for word in sentence.split())
-    return " ".join(new_sentence)
+    new_sentence = " ".join((words.get(word) for word in sentence.split()))
+    return new_sentence
 
 
 def main():

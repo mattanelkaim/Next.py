@@ -7,7 +7,7 @@ def double_letter(my_str: str) -> str:
     :rtype: str
     """
     # Double letters using lambda & map, then join list to a string
-    return "".join(list(map(lambda x: 2 * x, my_str)))
+    return "".join(map(lambda x: 2 * x, my_str))
 
 
 def main():

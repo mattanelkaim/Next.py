@@ -1,3 +1,4 @@
+from typing import Generator
 import itertools
 
 CURRENT_YEAR = 2023
@@ -18,19 +19,19 @@ DAYS_IN_MONTH = {
     }
 
 
-def gen_secs():
+def gen_secs() -> Generator[int, int, None]:
     yield from itertools.cycle(range(SECS_IN_MINUTE))
 
 
-def gen_minutes():
+def gen_minutes() -> Generator[int, int, None]:
     yield from itertools.cycle(range(MINUTES_IN_HOUR))
 
 
-def gen_hours():
+def gen_hours() -> Generator[int, int, None]:
     yield from itertools.cycle(range(HOURS_IN_DAY))
 
 
-def gen_time():
+def gen_time() -> Generator[str, str, None]:
     seconds_gen, minutes_gen, hours_gen = gen_secs(), gen_minutes(), gen_hours()
     secs, minutes, hours = next(seconds_gen), next(minutes_gen), next(hours_gen)
     while True:
@@ -42,15 +43,15 @@ def gen_time():
         secs = next(seconds_gen)
 
 
-def gen_years(start: int = CURRENT_YEAR):
+def gen_years(start: int = CURRENT_YEAR) -> Generator[int, int, None]:
     yield from itertools.count(start)
 
 
-def gen_months():
+def gen_months() -> Generator[int, int, None]:
     yield from itertools.cycle(range(1, MONTHS_IN_YEAR + 1))
 
 
-def gen_days(month: int, leap_year: bool = True):
+def gen_days(month: int, leap_year: bool = True) -> Generator[int, int, None]:
     # Calculate max days in current month
     if month == 2 and leap_year:
         max_days = 29
@@ -60,7 +61,7 @@ def gen_days(month: int, leap_year: bool = True):
     yield from itertools.cycle(range(1, max_days + 1))
 
 
-def gen_date():
+def gen_date() -> Generator[str, str, None]:
     months_gen, years_gen, time_gen = gen_months(), gen_years(), gen_time()
     months, years, time = next(months_gen), next(years_gen), next(time_gen)
     is_leap_year = (years % 4 == 0 and years % 100 != 0) or years % 400 == 0
@@ -83,7 +84,7 @@ def gen_date():
 
 def main():
     my_date = gen_date()
-    for i in range(1000000):  # Calculates in seconds as input
+    for _ in range(1_000_000):  # Calculates in seconds as input
         next(my_date)
     print(next(my_date))
 
