@@ -5,7 +5,7 @@ class BigThing:
     :type var: int or list or dict or str
     :ivar _var: The var of the current instance
     """
-    def __init__(self, var: "int or list or dict or str"):
+    def __init__(self, var: int | list | dict | str):
         self._var = var
 
     def size(self) -> int:
@@ -29,7 +29,7 @@ class BigCat(BigThing):
     :type weight: int
     :ivar _weight: The weight of the current cat
     """
-    def __init__(self, var: "int or list or dict or str", weight: int):
+    def __init__(self, var: int | list | dict | str, weight: int):
         super().__init__(var)
         self._weight = weight
 
@@ -41,10 +41,10 @@ class BigCat(BigThing):
         """
         if self._weight > 20:
             return "Very Fat"
-        elif self._weight > 15:  # Elif
+        elif self._weight > 15:
             return "Fat"
         else:
-            return "OK"  # Else
+            return "OK"
 
 
 def main():

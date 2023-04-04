@@ -1,5 +1,4 @@
 from queue import Queue
-from typing import Union
 
 
 # Ex 1
@@ -14,11 +13,11 @@ def print_queue(q: Queue) -> None:
 
 
 # Ex 2
-def max_in_queue(q: Queue[Union[int, float]]) -> int:
+def max_in_queue(q: Queue[int | float]) -> int:
     """
     Finds max value in an ints queue
     :param q: The queue to search
-    :type q: Queue[Union[int, float]]
+    :type q: Queue[int | float]
     :return: The max value in the queue
     :rtype: int
     """
@@ -26,11 +25,11 @@ def max_in_queue(q: Queue[Union[int, float]]) -> int:
 
 
 # Ex 3
-def average_of_queue(q: Queue[Union[int, float]]) -> float:
+def average_of_queue(q: Queue[int | float]) -> float:
     """
     Calculates the average of the queue elements
     :param q: The queue to find its average
-    :type q: Queue[Union[int, float]]
+    :type q: Queue[int | float]
     :return: The average of all the elements
     :rtype: float
     """
@@ -70,13 +69,13 @@ def is_in_queue(q: Queue, x: int) -> bool:
 
 
 # Ex 8
-def only_positives(q: Queue[Union[int, float]]) -> Queue[Union[int, float]]:
+def only_positives(q: Queue[int | float]) -> Queue[int | float]:
     """
     Creates a new queue containing only positive elements from the original queue.
     :param q: The original queue
-    :type q: Queue[Union[int, float]]
+    :type q: Queue[int | float]
     :return: A queue containing only positive ints
-    :rtype: Queue[Union[int, float]]
+    :rtype: Queue[int | float]
     """
     new_queue = Queue()
 

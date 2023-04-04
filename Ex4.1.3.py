@@ -30,7 +30,7 @@ def is_prime(n: int) -> bool:
 
 def main():
     start = time()
-    print(first_prime_over(513532512))
+    print(first_prime_over(513_532_512))
     end = time()
     print(f"Took {end - start} seconds.")
 
